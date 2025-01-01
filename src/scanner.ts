@@ -1,4 +1,4 @@
-import { Token } from "./token";
+import { Token, TokenType } from "./token";
 
 class Scanner {
   private source: string;
@@ -29,41 +29,43 @@ class Scanner {
   getToken(char: string): Token | null {
     switch (char) {
       case "*":
-        return new Token("STAR", char);
+        return new Token(TokenType.Star, char);
       case " ":
         return null;
       default:
         let keyword = this.keyword();
 
-        if (keyword) {
-          return new Token(keyword, keyword);
+        if (keyword != null) {
+          let [tokenType, keywordString] = keyword;
+          return new Token(tokenType, keywordString);
         }
 
         let identifier = this.identifier();
 
         if (identifier) {
-          return new Token("IDENTIFIER", identifier);
+          return new Token(TokenType.Identifier, identifier);
         }
     }
 
     return null;
   }
 
-  keyword(): string | null {
+  keyword(): [TokenType, string] | null {
     let r = this.current;
 
     let keywords = {
-      select: true,
-      from: true,
+      select: TokenType.Select,
+      from: TokenType.From,
     };
 
     while (r < this.source.length && this.source[r] != " ") {
       r++;
       let substr = this.source.substring(this.current - 1, r + 1);
+      let tokenType = keywords[substr.toLowerCase()];
 
-      if (keywords[substr.toLowerCase()]) {
+      if (tokenType) {
         this.current = r + 1;
-        return substr;
+        return [tokenType, substr];
       }
     }
 

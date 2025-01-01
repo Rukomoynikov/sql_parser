@@ -1,12 +1,12 @@
 import { expect, test, describe } from "vitest";
 import { Scanner } from "../src/scanner.ts";
-import { Token } from "../src/token.ts";
+import { Token, TokenType } from "../src/token.ts";
 
 describe("Basic examples", () => {
   test("Parsing start", () => {
     let scanner = new Scanner("*");
     let tokens = scanner.tokenize();
-    expect(tokens).toEqual([new Token("STAR", "*")]);
+    expect(tokens).toEqual([new Token(TokenType.Star, "*")]);
   });
 
   test("Example with normal query", () => {
@@ -14,10 +14,10 @@ describe("Basic examples", () => {
     let tokens = scanner.tokenize();
 
     expect(tokens).toEqual([
-      new Token("SELECT", "SELECT"),
-      new Token("STAR", "*"),
-      new Token("FROM", "FROM"),
-      new Token("IDENTIFIER", "numbers"),
+      new Token(TokenType.Select, "SELECT"),
+      new Token(TokenType.Star, "*"),
+      new Token(TokenType.From, "FROM"),
+      new Token(TokenType.Identifier, "numbers"),
     ]);
   });
 
@@ -26,22 +26,9 @@ describe("Basic examples", () => {
     let tokens = scanner.tokenize();
 
     expect(tokens).toEqual([
-      new Token("SELECT", "SELECT"),
-      new Token("STAR", "*"),
-      new Token("FROM", "FROM"),
+      new Token(TokenType.Select, "SELECT"),
+      new Token(TokenType.Star, "*"),
+      new Token(TokenType.From, "FROM"),
     ]);
   });
 });
-
-// describe("Where operator", () => {
-//   test("Example with a lot of whitespaces", () => {
-//     let scanner = new Scanner("SELECT * FROM WHERE");
-//     let tokens = scanner.tokenize();
-
-//     expect(tokens).toEqual([
-//       new Token("SELECT", "SELECT"),
-//       new Token("STAR", "*"),
-//       new Token("FROM", "FROM"),
-//     ]);
-//   });
-// });
