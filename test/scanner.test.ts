@@ -4,14 +4,14 @@ import { Token, TokenType } from "../src/token.ts";
 
 describe("Basic examples", () => {
   test("Parsing start", () => {
-    let scanner = new Scanner("*");
-    let tokens = scanner.tokenize();
+    const scanner = new Scanner("*");
+    const tokens = scanner.tokenize();
     expect(tokens).toEqual([new Token(TokenType.Star, "*")]);
   });
 
   test("Example with normal query", () => {
-    let scanner = new Scanner("SELECT * FROM numbers");
-    let tokens = scanner.tokenize();
+    const scanner = new Scanner("SELECT * FROM numbers");
+    const tokens = scanner.tokenize();
 
     expect(tokens).toEqual([
       new Token(TokenType.Select, "SELECT"),
@@ -22,8 +22,8 @@ describe("Basic examples", () => {
   });
 
   test("Example with a lot of whitespaces", () => {
-    let scanner = new Scanner("SELECT    *    FROM   ");
-    let tokens = scanner.tokenize();
+    const scanner = new Scanner("SELECT    *    FROM   ");
+    const tokens = scanner.tokenize();
 
     expect(tokens).toEqual([
       new Token(TokenType.Select, "SELECT"),

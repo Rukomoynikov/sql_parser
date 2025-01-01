@@ -11,8 +11,8 @@ class Scanner {
 
   tokenize(): Token[] {
     while (this.current < this.source.length) {
-      let char = this.source[this.current++];
-      let token = this.getToken(char);
+      const char = this.source[this.current++];
+      const token = this.getToken(char);
       if (token) this.tokens.push(token);
     }
 
@@ -33,14 +33,14 @@ class Scanner {
       case " ":
         return null;
       default:
-        let keyword = this.keyword();
+        const keyword = this.keyword();
 
         if (keyword != null) {
-          let [tokenType, keywordString] = keyword;
+          const [tokenType, keywordString] = keyword;
           return new Token(tokenType, keywordString);
         }
 
-        let identifier = this.identifier();
+        const identifier = this.identifier();
 
         if (identifier) {
           return new Token(TokenType.Identifier, identifier);
@@ -53,15 +53,15 @@ class Scanner {
   keyword(): [TokenType, string] | null {
     let r = this.current;
 
-    let keywords = {
+    const keywords = {
       select: TokenType.Select,
       from: TokenType.From,
     };
 
     while (r < this.source.length && this.source[r] != " ") {
       r++;
-      let substr = this.source.substring(this.current - 1, r + 1);
-      let tokenType = keywords[substr.toLowerCase()];
+      const substr = this.source.substring(this.current - 1, r + 1);
+      const tokenType = keywords[substr.toLowerCase()];
 
       if (tokenType) {
         this.current = r + 1;
@@ -79,7 +79,7 @@ class Scanner {
       r++;
     }
 
-    let substr = this.source.substring(this.current - 1, r);
+    const substr = this.source.substring(this.current - 1, r);
 
     if (substr) {
       this.current = r;
