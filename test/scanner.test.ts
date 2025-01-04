@@ -21,6 +21,20 @@ describe("Basic examples", () => {
     ]);
   });
 
+  test("Example with normal query", () => {
+    const scanner = new Scanner("SELECT id, data FROM numbers");
+    const tokens = scanner.tokenize();
+
+    expect(tokens).toEqual([
+      new Token(TokenType.Select, "SELECT"),
+      new Token(TokenType.Identifier, "id"),
+      new Token(TokenType.Comma, ","),
+      new Token(TokenType.Identifier, "data"),
+      new Token(TokenType.From, "FROM"),
+      new Token(TokenType.Identifier, "numbers"),
+    ]);
+  });
+
   test("Example with a lot of whitespaces", () => {
     const scanner = new Scanner("SELECT    *    FROM   ");
     const tokens = scanner.tokenize();
