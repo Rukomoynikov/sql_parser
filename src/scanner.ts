@@ -30,6 +30,8 @@ class Scanner {
     switch (char) {
       case "*":
         return new Token(TokenType.Star, char);
+      case ",":
+        return new Token(TokenType.Comma, char);
       case " ":
         return null;
       default:

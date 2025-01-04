@@ -3,6 +3,7 @@ enum TokenType {
   Identifier = "IDENTIFIER",
   Select = "SELECT",
   From = "FROM",
+  Comma = "COMMA",
 }
 
 class Token {
