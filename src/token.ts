@@ -7,8 +7,8 @@ enum TokenType {
 }
 
 class Token {
-  private type: TokenType;
-  private content: string;
+  type: TokenType;
+  content: string;
 
   constructor(type: TokenType, content: string) {
     this.type = type;
