@@ -32,6 +32,8 @@ class Scanner {
         return new Token(TokenType.Star, char);
       case ",":
         return new Token(TokenType.Comma, char);
+      case ";":
+        return new Token(TokenType.Semicolon, char);
       case " ":
         return null;
       default:

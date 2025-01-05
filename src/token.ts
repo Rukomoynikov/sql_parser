@@ -4,6 +4,7 @@ enum TokenType {
   Select = "SELECT",
   From = "FROM",
   Comma = "COMMA",
+  Semicolon = ";",
 }
 
 class Token {

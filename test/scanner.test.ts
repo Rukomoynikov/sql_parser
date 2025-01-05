@@ -10,7 +10,7 @@ describe("Basic examples", () => {
   });
 
   test("Example with normal query", () => {
-    const scanner = new Scanner("SELECT * FROM numbers");
+    const scanner = new Scanner("SELECT * FROM numbers;");
     const tokens = scanner.tokenize();
 
     expect(tokens).toEqual([
@@ -18,6 +18,7 @@ describe("Basic examples", () => {
       new Token(TokenType.Star, "*"),
       new Token(TokenType.From, "FROM"),
       new Token(TokenType.Identifier, "numbers"),
+      new Token(TokenType.Semicolon, ";"),
     ]);
   });
 
