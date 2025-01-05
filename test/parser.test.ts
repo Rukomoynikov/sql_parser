@@ -17,10 +17,8 @@ describe("Basic examples", () => {
 
     const expression = parser.parse();
 
-    console.log(expression)
-
     expect(expression).toEqual(
-      new Query({ select: new SelectExpression(["*"]) }),
+      new Query({ select: new SelectExpression(["*"]), from: "numbers" }),
     );
   });
 });
