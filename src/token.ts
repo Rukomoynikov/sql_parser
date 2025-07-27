@@ -5,6 +5,8 @@ enum TokenType {
   From = "FROM",
   Comma = "COMMA",
   Semicolon = ";",
+  Inner = "INNER",
+  Join = "JOIN",
 }
 
 class Token {
