@@ -60,6 +60,8 @@ class Scanner {
     const keywords = {
       select: TokenType.Select,
       from: TokenType.From,
+      inner: TokenType.Inner,
+      join: TokenType.Join,
     };
 
     while (r < this.source.length && this.source[r] != " ") {

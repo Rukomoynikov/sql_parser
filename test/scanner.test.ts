@@ -46,4 +46,22 @@ describe("Basic examples", () => {
       new Token(TokenType.From, "FROM"),
     ]);
   });
+
+  test("Example with inner joins and order", () => {
+    const scanner = new Scanner(
+      "SELECT * \
+      FROM categories \
+      INNER JOIN products \
+      ON categories.category_id = products.category_id \
+      ORDER BY products.product_name;",
+    );
+    const tokens = scanner.tokenize();
+
+    expect(tokens).toEqual([
+      new Token(TokenType.Select, "SELECT"),
+      new Token(TokenType.Star, "*"),
+      new Token(TokenType.From, "FROM"),
+      new Token(TokenType.Identifier, "categories"),
+    ]);
+  });
 });
